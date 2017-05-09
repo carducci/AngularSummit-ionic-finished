@@ -1,0 +1,62 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons>
+      <button ion-button menuToggle> <ion-icon name="menu"></ion-icon></button>
+    </ion-buttons>
+    <ion-title>My Agenda</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-card *ngFor="let session of myAgenda; let i = index">
+    <ion-card-header>
+      {{session.startTimeString}}
+    </ion-card-header>
+    <ion-card-content>
+
+      <ion-row>
+        <ion-col col-4>
+          <img
+            src="{{session?.speakerImage}}" style="width:100%"/>
+
+        </ion-col>
+        <ion-col col-8>
+          <h1>{{session?.title}}</h1>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6>
+          <p class="author">{{session.speakerNames}}</p>
+        </ion-col>
+        <ion-col col-6>
+          <p text-right>{{session.roomName | uppercase}}</p>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+    <ion-row>
+      <ion-col text-left>
+        <button
+          ion-button
+          clear
+          small
+          [navPush]="sessionDetail"
+          [navParams]="session"
+          color="primary"
+        >Details</button>
+      </ion-col>
+      <ion-col text-right>
+        <button
+          ion-button
+          clear
+          small
+          (click)="onRemoveFromAgenda(session)"
+          color="danger"
+
+          ><ion-icon name="trash" item-left></ion-icon>Remove</button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+</ion-content>

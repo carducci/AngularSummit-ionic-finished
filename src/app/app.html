@@ -1,0 +1,20 @@
+<ion-menu [content]="nav">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <button ion-item (click)="onLoad(rootPage)">
+      <ion-icon name="calendar" item-left>
+      </ion-icon>Schedule
+    </button>
+      <button ion-item (click)="onLoad(settings)">
+      <ion-icon name="settings" item-left>
+      </ion-icon>Settings
+    </button>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+<ion-nav [root]="rootPage" #nav></ion-nav>

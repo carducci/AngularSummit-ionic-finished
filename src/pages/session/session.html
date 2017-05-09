@@ -1,0 +1,57 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons>
+      <button ion-button menuToggle> <ion-icon name="menu"></ion-icon></button>
+    </ion-buttons>
+    <ion-title>{{sessionDetails?.title}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content >
+<ion-grid>
+  <ion-row>
+    <ion-col col-4>
+      <img
+        src="{{sessionDetails?.speakerImage}}" style="width:100%"/>
+
+    </ion-col>
+    <ion-col col-8>
+      <h1>{{sessionDetails?.title}}</h1>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+    <p class="heading">{{sessionDetails?.speakerNames | uppercase}}</p>
+    <p class="heading">{{sessionDetails?.startTimeString}}</p>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <h2>Summary</h2>
+      <p>{{sessionDetails?.summary}}</p>
+      <p>{{sessionDetails?.detail}}</p>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col text-right>
+      <button
+        ion-button
+        clear
+        small
+        (click)="onAddToAgenda(sessionDetails)"
+        *ngIf="!isOnAgenda(sessionDetails)">Add To My Agenda</button>
+      <button
+        ion-button
+        clear
+        small
+        (click)="onRemoveFromAgenda(sessionDetails)"
+        color="danger"
+        *ngIf="isOnAgenda(sessionDetails)">Remove</button>
+    </ion-col>
+
+  </ion-row>
+</ion-grid>
+</ion-content>

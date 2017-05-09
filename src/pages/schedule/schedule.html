@@ -1,0 +1,32 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons>
+      <button ion-button menuToggle> <ion-icon name="menu"></ion-icon></button>
+    </ion-buttons>
+    <ion-title>Conf Sessions</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-item-sliding *ngFor="let session of sessionCollection">
+      <button
+        ion-item
+        [navPush]="sessionDetail"
+        [navParams]="session"
+        [color]="getBackground(session)">
+        <h2 text-wrap>{{session.title}}</h2>
+        <p>{{session.speakerNames | uppercase}}</p>
+        <p>{{session.startTimeString}}</p>
+      </button>
+      <ion-item-options>
+        <button ion-button color="primary" *ngIf="!isOnAgenda(session)" (click)="onAddToAgenda(session)"><ion-icon name="add"></ion-icon>Add</button>
+        <button ion-button color="danger" *ngIf="isOnAgenda(session)" (click)="onRemoveFromAgenda(session)"><ion-icon name="trash"></ion-icon>Remove</button>
+      </ion-item-options>
+    </ion-item-sliding>
+
+  </ion-list>
+</ion-content>
